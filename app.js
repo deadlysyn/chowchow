@@ -25,7 +25,7 @@ app.get('/foods/list', middleware.logRequest, function(req, res) {
 });
 
 app.get('*', middleware.logRequest, function(req, res) {
-    res.render('catchall');
+    res.status(404).render('catchall');
 });
 
 app.listen(port, ip, function() {
