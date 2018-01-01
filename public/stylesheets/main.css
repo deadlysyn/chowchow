@@ -41,15 +41,15 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 }
 
 a {
-    color: rgba(200, 0, 0, 0.7);
+    color: rgba(0, 0, 0, 0.7);
     text-decoration: none;
 }
 
 a:hover {
-    color: rgba(200, 0, 0, 0.7);
+    color: rgba(250, 0, 0, 0.7);
 }
 
 a:visited {
-    color: #000000;
+    color: rgba(0, 0, 0, 0.7);
     text-decoration: none;
 }
