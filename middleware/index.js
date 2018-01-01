@@ -6,7 +6,7 @@ var middleware = {};
 
 middleware.logRequest = function(req, res, next) {
     var date = new Date();
-    console.log(date + ' ' + req.headers.host + ' ' + req.method + ' ' + req.url);
+    console.log(date + ' ' + req.ip + ' ' + req.method + ' ' + req.headers.host + ' ' + req.url);
     return next();
 }
 
