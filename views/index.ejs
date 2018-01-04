@@ -1,26 +1,85 @@
 <% include partials/header %>
 
 <div id="container">
-    <div class="row">
-        <div class="col">
-            <div class="home">
-                <span id="btn1"><i class="fa fa-spinner fa-pulse fa-5x fa-fw" aria-hidden="true"></i></span>
+    <div class="content">
+        <form action="/" method="post">
+            <div class="row">
+                <div class="col">
+                    <span id="loading"><i class="fas fa-spinner fa-pulse fa-5x" aria-hidden="true"></i></span>
+                </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col">
+                    <div class="controls">
+                        <label class="switch-light">
+                            <input name="pricey" type="checkbox">
+                            <span class="alert alert-light">
+                                <span class="fa-layers fa-2x fa-fw">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <i class="fas fa-minus" data-fa-transform="shrink-10 down-3 right-8"></i>
+                                    <span class="fa-layers-text" data-fa-transform="shrink-8 down-14 left-6" style="color: #fffbd5;">SAVE</span>
+                                </span>
+                                <span class="fa-layers fa-2x fa-fw">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <i class="fas fa-plus" data-fa-transform="shrink-10 down-3 right-8"></i>
+                                    <span class="fa-layers-text" data-fa-transform="shrink-8 down-14 left-14" style="color: #fffbd5;">SPLURGE</span>
+                                </span>
+                                <a class="btn btn-dark"></a>
+                            </span>
+                        </label>
+                        <label class="switch-light">
+                            <input name="drive" type="checkbox">
+                            <span class="alert alert-light">
+                                <span class="fa-layers fa-2x fa-fw">
+                                    <i class="fas fa-car" aria-hidden="true"></i>
+                                    <i class="fas fa-ban" data-fa-transform="grow-6" style="color: #fffbd5; opacity: 0.5;"></i>
+                                    <span class="fa-layers-text" data-fa-transform="shrink-8 down-14 left-9" style="color: #fffbd5;">WALK</span>
+                                </span>
+                                <span class="fa-layers fa-2x fa-fw">
+                                    <i class="fas fa-car" aria-hidden="true"></i>
+                                    <span class="fa-layers-text" data-fa-transform="shrink-8 down-14 left-10.5" style="color: #fffbd5;">DRIVE</span>
+                                </span>
+                                <a class="btn btn-dark"></a>
+                            </span>
+                        </label>
+                        <label class="switch-light">
+                            <input name="picky" type="checkbox">
+                            <span class="alert alert-light">
+                                <span class="fa-layers fa-2x fa-fw">
+                                    <i class="fas fa-smile" aria-hidden="true"></i>
+                                    <span class="fa-layers-text" data-fa-transform="shrink-8 down-14 left-13" style="color: #fffbd5;">FOODIE</span>
+                                </span>
+                                <span class="fa-layers fa-2x fa-fw">
+                                    <i class="fas fa-meh" aria-hidden="true"></i>
+                                    <span class="fa-layers-text" data-fa-transform="shrink-8 down-14 left-10.5" style="color: #fffbd5;">PICKY</span>
+                                </span>
+                                <a class="btn btn-dark"></a>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <span id="latitude"></span>
+            <span id="longitude"></span>
+        </form>
     </div>
 </div>
 
 <script>
-var btn1 = document.getElementById("btn1");
+var latitude = document.getElementById("latitude");
+var longitude = document.getElementById("longitude");
+var loading = document.getElementById("loading");
 
 if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
+navigator.geolocation.getCurrentPosition(showPosition);
 } else { 
-    btn1.innerHTML = "Geolocation is not supported by this browser.";
+document.body.innerHTML = "Geolocation is not supported by this browser.";
 }
 
 function showPosition(position) {
-    btn1.innerHTML = '<a class="btn btn-lg btn-home" href="/random/' + position.coords.latitude + '/' + position.coords.longitude + '">Feed Me</a>';
+latitude.innerHTML = '<input type="number" name="latitude" value="' + position.coords.latitude + '" hidden="true">'
+longitude.innerHTML = '<input type="number" name="longitude" value="' + position.coords.longitude + '" hidden="true">'
+loading.innerHTML = '<button class="btn" id="feedme"><i class="fas fa-utensils" aria-hidden="true"></i> EAT</button>'
 }
 </script>
 
