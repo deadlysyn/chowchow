@@ -17,45 +17,14 @@ app.get('/', middleware.logRequest, function(req, res) {
 });
 
 app.post('/', middleware.logRequest, function(req, res) {
+    var qstr = '?latitude=' + latitude + '&longitude=' + longitude;
+    if (req.body.pricey === 'on') {
+        qstr += qstr + '&price
+    } else {
+        qst
+        qstr += qstr + '&price
+    }
     res.send(req.body);
-});
-
-// app.get('/food', middleware.logRequest, function(req, res) {
-//     if (Object.keys(req.query).length === 0) {
-//         res.redirect('/');
-//     } else {
-//         if (res.query.random == true) {
-//             middleware.random(req.params.latitude, req.params.longitude, function(err, food) {
-//                 if (err != null) {
-//                     console.log(err);
-//                 } else {
-//                     res.render('random', {food: food});
-//                 }
-//             });
-//         } else {
-//             middleware.list(req.params.latitude, req.params.longitude, function(err, food) {
-//                 if (err != null) {
-//                     console.log(err);
-//                 } else {
-//                     res.render('random', {food: food});
-//                 }
-//             });
-//         }
-//     }
-// });
-
-app.get('/random/:latitude/:longitude', middleware.logRequest, function(req, res) {
-    middleware.randomFood(req.params.latitude, req.params.longitude, function(err, food) {
-        if (err != null) {
-            console.log(err);
-        } else {
-            res.render('random', {food: food});
-        }
-    });
-});
-
-app.get('/list/:latitude/:longitude', middleware.logRequest, function(req, res) {
-    res.render('list');
 });
 
 app.get('*', middleware.logRequest, function(req, res) {
