@@ -1,5 +1,5 @@
 DOCKER=/usr/local/bin/docker
-IMG=hungry
+IMG=chowchow
 
 build:
 	$(DOCKER) build . -t $(IMG)

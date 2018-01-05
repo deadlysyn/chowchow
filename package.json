@@ -1,5 +1,5 @@
 {
-  "name": "hungry",
+  "name": "chowchow",
   "version": "1.0.0",
   "description": "find food fast",
   "main": "app.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/deadlysyn/hungry.git"
+    "url": "git+https://github.com/deadlysyn/chowchow.git"
   },
   "author": "Mike Hoskins",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/deadlysyn/hungry/issues"
+    "url": "https://github.com/deadlysyn/chowchow/issues"
   },
-  "homepage": "https://github.com/deadlysyn/hungry#readme",
+  "homepage": "https://github.com/deadlysyn/chowchow#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "ejs": "^2.5.7",
