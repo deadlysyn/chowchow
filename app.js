@@ -1,8 +1,7 @@
-var express     = require('express'),
-    app         = express(),
-    request     = require('request'),
-    bp          = require('body-parser'),
-    middleware  = require('./middleware');
+const express       = require('express'),
+      app           = express(),
+      bp            = require('body-parser'),
+      middleware    = require('./middleware');
 
 // environment config
 var ip          = process.env.IP || '127.0.0.1',
@@ -14,17 +13,10 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', middleware.logRequest, function(req, res) {
     res.render('index');
-});
+})
 
-app.post('/', middleware.logRequest, function(req, res) {
-    var qstr = '?latitude=' + latitude + '&longitude=' + longitude;
-    if (req.body.pricey === 'on') {
-        qstr += qstr + '&price
-    } else {
-        qst
-        qstr += qstr + '&price
-    }
-    res.send(req.body);
+app.post('/', middleware.logRequest, middleware.parseRequest, function(req, res) {
+    res.render('random', {biz: req.body.choice});
 });
 
 app.get('*', middleware.logRequest, function(req, res) {
