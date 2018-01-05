@@ -5,7 +5,7 @@
         <form action="/" method="post">
             <div class="row">
                 <div class="col">
-                    <span id="loading"><i class="fas fa-spinner fa-pulse fa-5x" aria-hidden="true"></i></span>
+                    <span id="loading"><i class="fas fa-spinner fa-pulse fa-6x" aria-hidden="true"></i></span>
                 </div>
             </div>
             <div class="row">
@@ -71,15 +71,15 @@ var longitude = document.getElementById("longitude");
 var loading = document.getElementById("loading");
 
 if (navigator.geolocation) {
-navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(showPosition);
 } else { 
-document.body.innerHTML = "Geolocation is not supported by this browser.";
+    document.body.innerHTML = "Geolocation is not supported by this browser.";
 }
 
 function showPosition(position) {
-latitude.innerHTML = '<input type="number" name="latitude" value="' + position.coords.latitude + '" hidden="true">'
-longitude.innerHTML = '<input type="number" name="longitude" value="' + position.coords.longitude + '" hidden="true">'
-loading.innerHTML = '<button class="btn" id="feedme"><i class="fas fa-utensils" aria-hidden="true"></i> EAT</button>'
+    latitude.innerHTML = '<input type="number" name="latitude" value="' + position.coords.latitude + '" hidden="true">'
+    longitude.innerHTML = '<input type="number" name="longitude" value="' + position.coords.longitude + '" hidden="true">'
+    loading.innerHTML = '<button class="btn" id="feedme">FIND <i class="fas fa-utensils" aria-hidden="true"></i> FOOD</button>'
 }
 </script>
 
