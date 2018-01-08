@@ -1,0 +1,33 @@
+<% include partials/header %>
+
+<div id="container">
+    <div class="row">
+        <div class="col">
+            <div class="content box-shadow">
+            <% results.forEach(function(biz) {  %>
+                <% if (biz.image_url) { %>
+                <div class="list-item" style="background-image: url('<%= biz.image_url %>'); background-position: center; background-size: cover">
+                <% } else { %>
+                <div class="list-item box-shadow">
+                <% } %>
+                    <div class="list-left">
+                        <a class="btn btn-big btn-success" role="button" href="http://maps.google.com"><i class="fas fa-map-marker-alt fa-fw fa-2x" style="color:#fffbd5"></i></a>
+                    </div>
+                    <div class="list-middle text-shadow">
+                        <p><%= biz.name %> : <%= parseFloat(biz.distance / 1609.344).toFixed(1) %>mi</p>
+                        <p><%= biz.rating %>/5 : <%= biz.review_count %> <a href="<%= biz.url %>">reviews</a> : <%= biz.price %>/$$$$</p>
+                    </div>
+                    <div class="list-right">
+                        <a class="btn btn-big btn-primary" role="button" href="tel:1112223344"><i class="fas fa-phone fa-fw fa-2x" style="color:#fffbd5"></i></a>
+                    </div>
+                </div>
+            <% }) %>
+                <div class="buttons">
+                    <a class="btn btn-danger" role="button" href="/"><i class="fas fa-home fa-fw fa-2x" style="color:#fffbd5"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include partials/footer %>
