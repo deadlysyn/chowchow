@@ -3,23 +3,23 @@
 <div id="container">
     <div class="row">
         <div class="col">
-            <div class="content" style="background-image: url('<%= biz.image_url %>'); background-position: center; background-size: cover">
-                <div class="top-left text-shadow">
-                    <p><%= biz.name %></p>
-                    <p><%= biz.location.display_address[0] %></p>
-                    <p><%= biz.location.display_address[1] %></p>
-                    <p><%= biz.display_phone %></p>
-                </div>
-                <div class="top-right text-shadow">
-                    <p><i class="fas fa-map-pin fa-fw" style="color:#b20a2c"></i> <%= parseFloat(biz.distance / 1609.344).toFixed(2) %> miles</p>
-                    <p><i class="fas fa-star fa-fw" style="color:#b20a2c"></i> <%= biz.rating %>/5 (<%= biz.review_count %> <a href="<%= biz.url %>">reviews</a>)</p>
-                    <p><i class="fas fa-money-bill-alt fa-fw" style="color:#b20a2c"></i> <%= biz.price %>/$$$$</p>
+        <% if (biz.image_url) { %>
+            <div class="content box-shadow" style="background-image: url('<%= biz.image_url %>'); background-position: center; background-size: cover">
+        <% } else { %>
+            <div class="content box-shadow">
+        <% } %>
+                <div class="random-outer">
+                    <div class="random-inner text-shadow">
+                        <p><%= biz.name %></p>
+                        <p><%= parseFloat(biz.distance / 1609.344).toFixed(1) %> miles : <%= biz.price %>/$$$$</p>
+                        <p><%= biz.rating %>/5 stars (<%= biz.review_count %> <a href="<%= biz.url %>">reviews</a>)</p>
+                    </div>
                 </div>
                 <div class="buttons">
                     <span id="route"></span>
-                    <a class="btn btn-primary" role="button" href="tel:<%= biz.phone  %>"><i class="fas fa-phone fa-fw fa-2x"></i></a>
-                    <div id="back"><a class="btn btn-danger" role="button" href="/"><i class="fas fa-home fa-fw fa-2x"></i></a></div>
-                    <div id="more"><a class="btn btn-warning" role="button" href="/list"><i class="fas fa-plus fa-fw fa-2x"></i></a></div>
+                    <a class="btn btn-primary" role="button" href="tel:<%= biz.phone  %>"><i class="fas fa-phone fa-fw fa-2x" style="color:#fffbd5"></i></a>
+                    <div id="back"><a class="btn btn-danger" role="button" href="/"><i class="fas fa-home fa-fw fa-2x" style="color:#fffbd5"></i></a></div>
+                    <div id="more"><a class="btn btn-warning" role="button" href="/list"><i class="fas fa-th-list fa-fw fa-2x" style="color:#fffbd5"></i></a></div>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
 
 <script>
 var maps = 'https://maps.google.com?q=';
-var address = '<%= biz.location.display_address[0] %> <%= biz.location.display_address[1] %>';
+var address = '<%= biz.location.display_address %>';
 
 // https://www.habaneroconsulting.com/stories/insights/2011/opening-native-map-apps-from-the-mobile-browser
 if (bowser.iphone) {
@@ -38,9 +38,9 @@ if (bowser.iphone) {
 }
 
 var url = maps + encodeURIComponent(address);
-
 var route = document.getElementById("route");
-route.innerHTML = '<a class="btn btn-success" role="button" href="' + url + '"><i class="fas fa-map-marker-alt fa-fw fa-2x"></i></a>';
+
+route.innerHTML = '<a class="btn btn-success" role="button" href="' + url + '"><i class="fas fa-map-marker-alt fa-fw fa-2x" style="color:#fffbd5"></i></a>';
 </script>
 
 <% include partials/footer %>
