@@ -20,6 +20,7 @@ middleware.logRequest = function(req, res, next) {
 
 middleware.parseRequest = function(req, res, next) {
     if (req.body.latitude && req.body.longitude) {
+        // build up yelp api query string...
         let q = '?term=' + SEARCHTERM + '&latitude=' + req.body.latitude + '&longitude=' + req.body.longitude + '&limit=' + APILIMIT + '&open_now=true' + '&sort_by=rating';
 
         // how much you're willing to spend
@@ -45,10 +46,13 @@ middleware.parseRequest = function(req, res, next) {
         }
 
         searchYelp(q, function(results) {
-            randomChoice(results, function(choice) {
-                req.body.choice = choice;
-                return next();
-            });
+            // return a random result
+            choices = Object.keys(results.businesses).length;
+            randChoice = Math.floor(Math.random() * choices);
+            req.session.choice = results.businesses[randChoice];
+            // save remaining results
+            req.session.results = results.businesses.filter(biz => req.session.choice.id != biz.id);
+            return next();
         });
     } else {
         res.redirect('/nolocation');
@@ -75,12 +79,6 @@ function searchYelp(queryString, callback) {
             callback(JSON.parse(body));
         });
     });
-}
-
-function randomChoice(results, callback) {
-    choices = Object.keys(results.businesses).length;
-    randChoice = Math.floor(Math.random() * choices);
-    callback(results.businesses[randChoice]);
 }
 
 module.exports = middleware;
