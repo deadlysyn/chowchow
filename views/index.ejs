@@ -1,8 +1,8 @@
 <% include partials/header %>
 
 <div id="container">
-    <div class="content">
-        <form action="/" method="post">
+    <div class="content box-shadow">
+        <form action="/random" method="post">
             <div class="row">
                 <div class="col">
                     <span id="loading"><i class="fas fa-spinner fa-pulse fa-6x" aria-hidden="true"></i></span>
@@ -73,7 +73,7 @@ var loading = document.getElementById("loading");
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
 } else { 
-    document.body.innerHTML = "Geolocation is not supported by this browser.";
+    location = '/nolocation';
 }
 
 function showPosition(position) {
