@@ -12,15 +12,33 @@ app.set('view engine', 'ejs')
 app.use(bp.urlencoded({extended: true}))
 app.use(express.static(__dirname + '/public'))
 
-// template helper to selectively truncate long strings
-// and only add elipsis on truncation.
-app.locals.printer = function(str) {
-    let len = 20
+// template helpers
+
+// truncate long strings and only add elipsis on truncation
+app.locals.printer = function(str, len) {
+    len = len > 0 ? len : 15
     if (str.length > len) {
-        str = str.substring(0,len) + '...'
+        str = str.substring(0,len).trim() + '...'
     }
     return str
 }
+
+// convert rating number to svg stars
+app.locals.stars = function(num) {
+    let stars = ''
+
+    for (var i = 0; i < num-1; i++) {
+        stars += '<i class="fas fa-star fa-lg" style="color: #FFD700"></i>'
+    }
+
+    if (num%1 != 0) {
+        stars += '<i class="fas fa-star-half fa-lg" style="color: #FFD700"></i>'
+    }
+    
+    return stars
+}
+
+// routes
 
 app.use(session({
   secret: 'some random long string we should read from the environment',
