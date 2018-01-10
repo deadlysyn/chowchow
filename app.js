@@ -2,6 +2,7 @@ const express   = require('express'),
       app       = express(),
       bp        = require('body-parser'),
       session   = require('express-session'),
+      memstore  = require('memorystore')(session),
       m         = require('./middleware')
 
 // environment config
@@ -13,7 +14,9 @@ app.set('view engine', 'ejs')
 app.use(bp.urlencoded({extended: true}))
 app.use(express.static(__dirname + '/public'))
 
-// template helpers
+/*
+ * template helpers
+ */
 
 // truncate long strings and only add elipsis on truncation
 app.locals.printer = function(str, len) {
@@ -39,13 +42,20 @@ app.locals.stars = function(num) {
     return stars
 }
 
-// routes
+
+/*
+ * routes
+ */
 
 app.use(session({
-  secret: secret,
-  resave: false,
-  saveUninitialized: true
+    store: new memstore({
+        checkPeriod: 3600000 // 1 hour in ms
+    }),
+    secret: secret
 }))
+  
+// resave: false,
+// saveUninitialized: true
 
 app.use(function (req, res, next) {
     if (!req.session.results) {
