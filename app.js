@@ -70,7 +70,6 @@ app.get('/', m.logRequest, function(req, res, next) {
 })
 
 app.post('/random', m.logRequest, m.parseRequest, function(req, res, next) {
-    console.log('lat/long: ' + req.body.latitude + req.body.longitude)
     res.redirect('/random')
 })
 
