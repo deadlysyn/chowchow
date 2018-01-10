@@ -78,7 +78,7 @@ var latitude    = document.getElementById("latitude"),
 function success(position) {
     latitude.innerHTML = '<input type="number" name="latitude" value="' + position.coords.latitude + '" hidden="true">'
     longitude.innerHTML = '<input type="number" name="longitude" value="' + position.coords.longitude + '" hidden="true">'
-    loading.innerHTML = '<button class="btn" id="feedme">FIND <i class="fas fa-utensils" aria-hidden="true"></i> FOOD</button>'
+    loading.innerHTML = '<button type="button" class="btn" id="feedme">FIND <i class="fas fa-utensils" aria-hidden="true"></i> FOOD</button>'
 }
 
 function error(error) {
