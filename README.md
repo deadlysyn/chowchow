@@ -32,4 +32,15 @@ The app will be running on localhost:3000, and container is running nodemon for 
 
 # Deployment
 
-TBD
+Make sure the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install) is installed.
+
+From the Heroku console, under Settings > Config Variables add entries for:
+
+```
+SECRET # express-session secret key
+API_KEY # Yelp API key
+```
+[How to get a Yelp API key?](https://www.yelp.com/developers/documentation/v3/authentication)
+
+Commits to master are auto-deployed.
+
