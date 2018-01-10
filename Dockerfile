@@ -3,7 +3,7 @@ FROM node:latest
 RUN mkdir -p /app
 WORKDIR /app
 
-COPY dev-package.json /app/
+COPY package.json /app/
 RUN npm install
 RUN npm install -g nodemon
 
