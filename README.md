@@ -28,6 +28,8 @@ make build # build docker image
 make run # run chowchow container
 ```
 
+The app will be running on localhost:3000, and container is running nodemon for auto-restarts.
+
 # Deployment
 
 TBD
