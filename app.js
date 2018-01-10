@@ -70,11 +70,13 @@ app.get('/', m.logRequest, function(req, res, next) {
 })
 
 app.post('/random', m.logRequest, m.parseRequest, function(req, res, next) {
+    console.log('lat/long: ' + req.body.latitude + req.body.longitude)
     res.redirect('/random')
 })
 
 app.get('/random', m.logRequest, function(req, res, next) {
     if (req.session.choice) {
+        console.log(choice)
         res.render('random', {biz: req.session.choice})
     } else {
         res.redirect('/')
