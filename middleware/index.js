@@ -47,12 +47,12 @@ middleware.parseRequest = function(req, res, next) {
         }
 
         searchYelp(q, function(results) {
-            if (results.businesses.length > 0) {
-                // return a random result
-                choices = Object.keys(results.businesses).length
-                randChoice = Math.floor(Math.random() * choices)
+            let choices = results.businesses.length
+            if (choices > 0) {
+                // stash random result in session
+                let randChoice = Math.floor(Math.random() * choices)
                 req.session.choice = results.businesses[randChoice]
-                // save remaining results
+                // save remaining results for list view
                 req.session.results = results.businesses.filter(biz => req.session.choice.id != biz.id)
                 return next()
             } else {
@@ -65,7 +65,7 @@ middleware.parseRequest = function(req, res, next) {
 }
 
 function searchYelp(queryString, callback) {
-    var options = {
+    let options = {
         headers: {'Authorization': 'Bearer ' + APIKEY},
         hostname: APIHOST,
         path: APIPREFIX + queryString,
