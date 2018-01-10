@@ -7,7 +7,7 @@ const express   = require('express'),
 // environment config
 var ip          = process.env.IP || '127.0.0.1',
     port        = parseInt(process.env.PORT, 10) || 3000,
-    SECRET      = process.env.SECRET || 'some random long string we should read from the environment'
+    secret      = process.env.SECRET || 'some random long string we should read from the environment'
 
 app.set('view engine', 'ejs')
 app.use(bp.urlencoded({extended: true}))
@@ -42,7 +42,7 @@ app.locals.stars = function(num) {
 // routes
 
 app.use(session({
-  secret: SECRET,
+  secret: secret,
   resave: false,
   saveUninitialized: true
 }))
