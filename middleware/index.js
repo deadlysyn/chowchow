@@ -47,13 +47,17 @@ middleware.parseRequest = function(req, res, next) {
         }
 
         searchYelp(q, function(results) {
-            // return a random result
-            choices = Object.keys(results.businesses).length
-            randChoice = Math.floor(Math.random() * choices)
-            req.session.choice = results.businesses[randChoice]
-            // save remaining results
-            req.session.results = results.businesses.filter(biz => req.session.choice.id != biz.id)
-            return next()
+            if (results.businesses.length > 0) {
+                // return a random result
+                choices = Object.keys(results.businesses).length
+                randChoice = Math.floor(Math.random() * choices)
+                req.session.choice = results.businesses[randChoice]
+                // save remaining results
+                req.session.results = results.businesses.filter(biz => req.session.choice.id != biz.id)
+                return next()
+            } else {
+                res.redirect('/')
+            }
         })
     } else {
         res.redirect('/nolocation')
