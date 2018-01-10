@@ -51,11 +51,11 @@ app.use(session({
     store: new memstore({
         checkPeriod: 3600000 // 1 hour in ms
     }),
+    resave: false,
+    saveUninitialized: true,
     secret: secret
 }))
   
-// resave: false,
-// saveUninitialized: true
 
 app.use(function (req, res, next) {
     if (!req.session.results) {
