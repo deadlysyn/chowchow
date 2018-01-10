@@ -76,7 +76,7 @@ app.post('/random', m.logRequest, m.parseRequest, function(req, res, next) {
 
 app.get('/random', m.logRequest, function(req, res, next) {
     if (req.session.choice) {
-        console.log(choice)
+        console.log(req.session.choice)
         res.render('random', {biz: req.session.choice})
     } else {
         res.redirect('/')
