@@ -9,6 +9,7 @@ const APIPREFIX = '/v3/businesses/search'
 const APIURL = 'https://' + APIHOST + APIPREFIX
 const APILIMIT = 5
 const SEARCHTERM = 'restaurants'
+const APIKEY = process.env.API_KEY
 
 var middleware = {}
 
@@ -61,13 +62,12 @@ middleware.parseRequest = function(req, res, next) {
 
 function searchYelp(queryString, callback) {
     var options = {
-        headers: {'Authorization': 'Bearer ' + process.env.API_KEY},
+        headers: {'Authorization': 'Bearer ' + APIKEY},
         hostname: APIHOST,
         path: APIPREFIX + queryString,
         port: 443
     }
     https.get(options, function(res) {
-        console.log('Yelp API search: ' + APIURL + queryString + ' (' + res.statusCode + ')')
         res.setEncoding("utf8")
 
         let body = ""
