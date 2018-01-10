@@ -82,7 +82,7 @@ function success(position) {
 }
 
 function error(error) {
-        loading.innerHTML = 'Unable to retrieve your location...(' + error.message + ')'
+    loading.innerHTML = 'Unable to retrieve location<br/> (' + error.message + ')...'
 }
     
 if (!navigator.geolocation) {
