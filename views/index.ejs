@@ -82,7 +82,7 @@ function success(position) {
 }
 
 function error(error) {
-    loading.innerHTML = '<button class="btn" id="feedme">Unable to retrieve location<br/>' + error.message + '</button>'
+    loading.innerHTML = '<p>Unable to retrieve location:<br/>' + error.message + '</p>'
 }
     
 if (!navigator.geolocation) {
