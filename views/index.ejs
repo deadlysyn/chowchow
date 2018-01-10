@@ -59,9 +59,10 @@
                     </div>
                 </div>
             </div>
-            <!--span id="latitude"></span-->
-            <input type="hidden" name="latitude" value="" id="latitude">
-            <span id="longitude"></span>
+            <!--<span id="latitude"></span>
+            <span id="longitude"></span>-->
+            <input type="hidden" name="latitude" value="0" id="latitude">
+            <input type="hidden" name="longitude" value="0" id="longitude">
         </form>
     </div>
 </div>
@@ -78,8 +79,9 @@ var latitude    = document.getElementById("latitude"),
 
 function success(position) {
     //latitude.innerHTML = '<input type="hidden" name="latitude" value="' + position.coords.latitude + '">'
+    //longitude.innerHTML = '<input type="hidden" name="longitude" value="' + position.coords.longitude + '">'
     latitude.value = position.coords.latitude
-    longitude.innerHTML = '<input type="hidden" name="longitude" value="' + position.coords.longitude + '">'
+    longitude.value = position.coords.longitude
     loading.innerHTML = '<button type="submit" class="btn" id="feedme">FIND <i class="fas fa-utensils" aria-hidden="true"></i> FOOD</button>'
 }
 
