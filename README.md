@@ -9,11 +9,25 @@ This is the problem chowchow attempts to solve, with the potential for
 social good tossed in for free. Here's how:
 
 - Obtain your location via browser or mobile GPS
-- Search Yelp's API for restauraunts ("Top 5" near you)
+- Search [Yelp's API](https://www.yelp.com/developers/documentation/v3/get_started) for restauraunts ("Top 5" near you)
 - Ensure choices meet basic criteria (open now, sorted by rating, etc.)
 - Optional: Adjust choices based on user input (price range, distance, etc.)
 - Randomly select one choice from "Top 5"
 - Display business details and quick links to route/call
-- If random choice sucks, allow "random roll" through remaining choices
-- Start as webapp, with mobile-friendly interface
-- iOS/Android versions TBD
+- If random choice sucks, display list of remaining choices
+
+This is starting as a webapp, with a (hopefully) mobile-friendly
+interface. In time, I hope to make iOS/Android versions.
+
+# Development
+
+Make sure Docker's installed, clone this repo, then simply:
+
+```
+make build # build docker image
+make run # run chowchow container
+```
+
+# Deployment
+
+TBD
