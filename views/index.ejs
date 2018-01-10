@@ -75,11 +75,6 @@ var latitude    = document.getElementById("latitude"),
         timeout: 10000
     }
 
-if (!navigator.geolocation) {
-    location.assign('/nolocation')
-    return
-}
-
 function success(position) {
         latitude.innerHTML = '<input type="number" name="latitude" value="' + position.coords.latitude + '" hidden="true">'
         longitude.innerHTML = '<input type="number" name="longitude" value="' + position.coords.longitude + '" hidden="true">'
@@ -90,7 +85,11 @@ function error(error) {
         loading.innerHTML = 'Unable to retrieve your location...' + error.code + error.message
 }
     
-navigator.geolocation.getCurrentPosition(success, error, options)
+if (!navigator.geolocation) {
+    location.assign('/nolocation')
+} else {
+    navigator.geolocation.getCurrentPosition(success, error, options)
+fi
 </script>
 
 <% include partials/footer %>
