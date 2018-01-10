@@ -66,14 +66,15 @@
 </div>
 
 <script>
-var latitude = document.getElementById("latitude");
-var longitude = document.getElementById("longitude");
-var loading = document.getElementById("loading");
+var latitude = document.getElementById("latitude")
+var longitude = document.getElementById("longitude")
+var loading = document.getElementById("loading")
 
 if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
+    console.log(navigator.geolocation)
+    navigator.geolocation.getCurrentPosition(showPosition)
 } else { 
-    location = '/nolocation';
+    location = '/nolocation'
 }
 
 function showPosition(position) {
