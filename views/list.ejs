@@ -14,8 +14,8 @@
                         <a class="btn btn-big btn-success" role="button" href="#" onclick="route('<%= biz.location.display_address %>');return false"><i class="fas fa-map-marker-alt fa-fw fa-2x" style="color:#fffbd5"></i></a>
                     </div>
                     <div class="list-middle text-shadow">
-                        <p><%= printer(biz.name) %> : <%= parseFloat(biz.distance / 1609.344).toFixed(1) %>mi</p>
-                        <p><%= biz.rating %>/5 : <%= biz.review_count %> <a href="<%= biz.url %>">reviews</a> : <%= biz.price %>/$$$$</p>
+                        <p><%= printer(biz.name) %> (<%= parseFloat(biz.distance / 1609.344).toFixed(1) %>mi)</p>
+                        <p><a href="<%= biz.url %>"><%- stars(biz.rating) %></a></p>
                     </div>
                     <div class="list-right">
                         <a class="btn btn-big btn-primary" role="button" href="tel:<%= biz.phone %>"><i class="fas fa-phone fa-fw fa-2x" style="color:#fffbd5"></i></a>
