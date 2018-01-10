@@ -6,7 +6,7 @@ const express   = require('express'),
       m         = require('./middleware')
 
 // environment config
-var ip          = process.env.IP || '127.0.0.1',
+var ip          = process.env.IP || '0.0.0.0',
     port        = parseInt(process.env.PORT, 10) || 3000,
     secret      = process.env.SECRET || 'some random long string we should read from the environment'
 
