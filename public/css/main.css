@@ -1,11 +1,11 @@
-html {
-    height: 100%;
-}
 
 body {
     /* https://uigradients.com/#Relaxingred */
     background: #fffbd5;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #b20a2c, #fffbd5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-gradient(linear, right top, left top, from(#b20a2c), to(#fffbd5));
+    background: -webkit-linear-gradient(right, #b20a2c, #fffbd5);
+    background: -o-linear-gradient(right, #b20a2c, #fffbd5);
     background: linear-gradient(to left, #b20a2c, #fffbd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     display: none;
 }
@@ -21,7 +21,7 @@ a {
 }
 
 a:active, a:hover {
-    rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
     text-decoration: none;
 }
 
@@ -44,7 +44,11 @@ a:visited {
 }
     
 .box-shadow {
-    box-shadow: inset 0px 0.5em 1em rgba(0, 0, 0, 0.5),
+    -webkit-box-shadow: inset 0px 0.5em 1em rgba(0, 0, 0, 0.5),
+                inset 0px -0.5em 1em rgba(0, 0, 0, 0.5),
+                inset 0.5em 0px 1em rgba(0, 0, 0, 0.5),
+                inset -0.5em 0px 1em rgba(0, 0, 0, 0.5);
+            box-shadow: inset 0px 0.5em 1em rgba(0, 0, 0, 0.5),
                 inset 0px -0.5em 1em rgba(0, 0, 0, 0.5),
                 inset 0.5em 0px 1em rgba(0, 0, 0, 0.5),
                 inset -0.5em 0px 1em rgba(0, 0, 0, 0.5);
