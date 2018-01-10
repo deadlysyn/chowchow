@@ -61,8 +61,8 @@
             </div>
             <!--<span id="latitude"></span>
             <span id="longitude"></span>-->
-            <input type="hidden" name="latitude" value="0" id="latitude">
-            <input type="hidden" name="longitude" value="0" id="longitude">
+            <input type="hidden" name="latitude" value="0" id="latitude" required/>
+            <input type="hidden" name="longitude" value="0" id="longitude" required/>
         </form>
     </div>
 </div>
@@ -80,13 +80,15 @@ var latitude    = document.getElementById("latitude"),
 function success(position) {
     //latitude.innerHTML = '<input type="hidden" name="latitude" value="' + position.coords.latitude + '">'
     //longitude.innerHTML = '<input type="hidden" name="longitude" value="' + position.coords.longitude + '">'
+    console.log('BEFORE: ' + latitude.value + ' ' + longitude.value)
     latitude.value = position.coords.latitude
     longitude.value = position.coords.longitude
+    console.log('AFTER: ' + latitude.value + ' ' + longitude.value)
     loading.innerHTML = '<button type="submit" class="btn" id="feedme">FIND <i class="fas fa-utensils" aria-hidden="true"></i> FOOD</button>'
 }
 
 function error(error) {
-    loading.innerHTML = '<p>Unable to retrieve location:<br/>' + error.message + '</p>'
+    loading.innerHTML = '<p>Unable to retrieve location:<br/> "' + error.message + '"</p>'
 }
     
 if (!navigator.geolocation) {
