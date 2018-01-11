@@ -76,10 +76,10 @@ app.post('/random', m.logRequest, m.parseRequest, function(req, res, next) {
 app.get('/random', m.logRequest, function(req, res, next) {
     // got random choice from yelp
     if (req.session.choice.name) {
-        chonsole.log('GET ROUTE: ' + req.session.choice.name)
+        console.log('GET ROUTE: ' + req.session.choice.name)
         res.render('random', {biz: req.session.choice})
     } else {
-        chonsole.log('GET ROUTE REDIRECT!')
+        console.log('GET ROUTE REDIRECT!')
         res.redirect('/')
     }
 })
