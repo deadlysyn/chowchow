@@ -54,7 +54,7 @@ app.use(session({
         checkPeriod: 3600000 // 1 hour in ms
     }),
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     secret: secret
 }))
   
