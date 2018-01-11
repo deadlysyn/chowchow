@@ -75,18 +75,6 @@ var latitude    = document.getElementById("latitude"),
         timeout: 20000
     }
 
-// https://github.com/Modernizr/Modernizr/commit/33f00fbbeb12e92bf24711ea386e722cce6f60cc
-function cookieEnabled(){
-    // Quick test if browser has cookieEnabled host property
-    if (navigator.cookieEnabled) return true
-    // Create cookie
-    document.cookie = "cookietest=1"
-    var ret = document.cookie.indexOf("cookietest=") != -1
-    // Delete cookie
-    document.cookie = "cookietest=1; expires=Thu, 01-Jan-1970 00:00:01 GMT"
-    return ret
-}
-
 function success(position) {
     latitude.value = position.coords.latitude
     longitude.value = position.coords.longitude
@@ -103,8 +91,15 @@ if (!navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error, options)
 }
 
-if (cookieEnabled) {
-    loading.innerHTML = '<p>This site requires cookies to function!</p>'
+if (!navigator.cookieEnabled) {
+    // Create cookie
+    document.cookie = "cookietest=1"
+    if document.cookie.indexOf("cookietest=") === -1 {
+        loading.innerHTML = '<p>This site requires cookies!</p>'
+    } else {
+        // Delete cookie
+        document.cookie = "cookietest=1; expires=Thu, 01-Jan-1970 00:00:01 GMT"
+    }
 }
 </script>
 
