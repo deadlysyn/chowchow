@@ -75,7 +75,7 @@ app.post('/random', m.logRequest, m.parseRequest, function(req, res, next) {
 
 app.get('/random', m.logRequest, function(req, res, next) {
     // got random choice from yelp
-    console.log('GET ROUTE: ' + req.session.choice)
+    console.log('GET ROUTE: ' + req.session.choice.name)
     if (req.session.choice.name) {
         res.render('random', {biz: req.session.choice})
     } else {
