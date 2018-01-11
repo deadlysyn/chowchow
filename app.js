@@ -72,8 +72,13 @@ app.get('/', m.logRequest, function(req, res, next) {
 })
 
 app.post('/random', m.logRequest, m.parseRequest, function(req, res, next) {
-    req.session.save()
-    res.redirect('/random')
+    req.session.save(function(err) {
+        if (err) {
+            res.redirect('/')
+        } else {
+            res.redirect('/random')
+        }
+    })
 })
 
 app.get('/random', m.logRequest, function(req, res, next) {
