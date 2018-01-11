@@ -53,7 +53,7 @@ middleware.parseRequest = function(req, res, next) {
                 // grab random results
                 let randChoice = Math.floor(Math.random() * choices)
                 req.session.choice = results.businesses[randChoice]
-                console.log('DEBUG: ' + req.session.choice)
+                console.log('DEBUG: ' + req.session.choice.id)
                 // save remaining results
                 req.session.results = results.businesses.filter(biz => req.session.choice.id != biz.id)
                 return next()
