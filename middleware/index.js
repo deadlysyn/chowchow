@@ -55,8 +55,13 @@ middleware.parseRequest = function(req, res, next) {
                 console.log('DEBUG: ' + req.session.choice.id)
                 // save remaining results
                 req.session.results = results.businesses.filter(biz => req.session.choice.id != biz.id)
-                req.session.save()
-                return next()
+                req.session.save(function(err) {
+                    if (err) {
+                        res.redirect('/')
+                    } else {
+                        return next()
+                    }
+                })
             } else {
                 res.redirect('/')
             }
