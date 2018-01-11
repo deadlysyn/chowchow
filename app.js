@@ -74,6 +74,7 @@ app.get('/', m.logRequest, function(req, res, next) {
 app.post('/random', m.logRequest, m.parseRequest, function(req, res, next) {
     req.session.save(function(err) {
         if (err) {
+            console.log('ERROR: ' + err)
             res.redirect('/')
         } else {
             res.redirect('/random')
