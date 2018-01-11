@@ -2,8 +2,7 @@ const express   = require('express'),
       app       = express(),
       bp        = require('body-parser'),
       session   = require('express-session'),
-      memstore  = require('memorystore')(session),
-      m         = require('./middleware')
+      memstore  = require('memorystore')(session)
 
 // environment config
 var ip          = process.env.IP || '0.0.0.0',
@@ -13,6 +12,9 @@ var ip          = process.env.IP || '0.0.0.0',
 app.set('view engine', 'ejs')
 app.use(bp.urlencoded({extended: true}))
 app.use(express.static(__dirname + '/public'))
+     
+// import middleware
+var m = require('./middleware')
 
 /*
  * template helpers
@@ -70,6 +72,7 @@ app.get('/', m.logRequest, function(req, res, next) {
 })
 
 app.post('/random', m.logRequest, m.parseRequest, function(req, res, next) {
+    req.session.save()
     res.redirect('/random')
 })
 
