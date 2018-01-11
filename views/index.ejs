@@ -94,7 +94,7 @@ if (!navigator.geolocation) {
 if (!navigator.cookieEnabled) {
     // Create cookie
     document.cookie = 'cookietest=1'
-    if (document.cookie.indexOf("cookietest=") === -1) {
+    if (document.cookie.indexOf("cookietest=") == -1) {
         loading.innerHTML = '<p>This site requires cookies!</p>'
     } else {
         // Delete cookie
