@@ -2,7 +2,8 @@ const express   = require('express'),
       app       = express(),
       bp        = require('body-parser'),
       session   = require('express-session'),
-      memstore  = require('memorystore')(session)
+      memstore  = require('memorystore')(session),
+      m         = require('./middleware')
 
 // environment config
 var ip          = process.env.IP || '0.0.0.0',
@@ -13,9 +14,6 @@ app.set('view engine', 'ejs')
 app.use(bp.urlencoded({extended: true}))
 app.use(express.static(__dirname + '/public'))
      
-// import middleware
-var m = require('./middleware')
-
 /*
  * template helpers
  */
@@ -43,7 +41,6 @@ app.locals.stars = function(num) {
     
     return stars
 }
-
 
 /*
  * routes
@@ -79,12 +76,9 @@ app.post('/random', m.logRequest, m.parseRequest, function(req, res, next) {
 
 app.get('/random', m.logRequest, function(req, res, next) {
     // got random choice from yelp
-    console.log('GET ROUTE: ' + req.session.choice.id)
     if (req.session.choice.id) {
         res.render('random', {biz: req.session.choice})
     } else {
-        // getting here ?!?
-        console.log('GET ROUTE REDIRECT!')
         res.redirect('/')
     }
 })
