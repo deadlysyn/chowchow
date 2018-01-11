@@ -46,13 +46,15 @@ middleware.parseRequest = function(req, res, next) {
             q += '&categories=tradamerican,newamerican,burgers,breakfast_brunch,chinese,diners,italian,mexican,pizza,sandwiches,steak'
         }
 
+        console.log('QUERY STRING: ' + q)
+
         searchYelp(q, function(results) {
             let choices = results.businesses.length
             if (choices > 0) {
-                // stash random result in session
+                // grab random results
                 let randChoice = Math.floor(Math.random() * choices)
                 req.session.choice = results.businesses[randChoice]
-                // save remaining results for list view
+                // save remaining results
                 req.session.results = results.businesses.filter(biz => req.session.choice.id != biz.id)
                 return next()
             } else {
