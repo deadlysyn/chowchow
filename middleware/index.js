@@ -82,6 +82,7 @@ function searchYelp(queryString, callback) {
         })
 
         res.on("end", () => {
+            console.log('searchYelp: ' + body)
             callback(JSON.parse(body))
         })
     })
