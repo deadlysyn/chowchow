@@ -1,0 +1,25 @@
+<% include partials/header %>
+<body id="home">
+    <script defer src="/js/home.js"></script>
+    <form action="/random" method="post" id="form">
+        <input type="hidden" name="price" value="$$">
+        <input type="hidden" name="drive" value="true">
+        <input type="hidden" name="latitude" value="0" min="0" step="Any" id="latitude" required>
+        <input type="hidden" name="longitude" value="0" min="0" step="Any" id="longitude" required>
+    </form>
+    <div class="button" id="find">
+        <span id="loading">
+            <i class="fas fa-spinner fa-pulse fa-lg" aria-hidden="true"></i>
+        </span>
+    </div>
+    <div class="button" id="price">
+        <i class="fas fa-dollar-sign fa-lg" aria-hidden="true"></i>
+        <i class="fas fa-dollar-sign fa-lg" aria-hidden="true"></i>
+    </div>
+    <div class="button" id="drive">
+        <i class="fas fa-dot-circle fa-lg"></i> 
+    </div>
+    <div class="button" id="donate">
+        GIVE <i class="fas fa-heart fa-lg" aria-hidden="true"></i> FOOD
+    </div>
+<% include partials/footer %>
