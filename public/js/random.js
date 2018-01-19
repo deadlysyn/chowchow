@@ -4,15 +4,15 @@ var route   = document.getElementById('js-random-route'),
     list    = document.getElementById('js-random-list')
 
 function updateMapURL(address) {
-    let maps = 'https://maps.google.com'
+    let maps = 'https://maps.google.com?q='
 
     // https://www.habaneroconsulting.com/stories/insights/2011/opening-native-map-apps-from-the-mobile-browser
+    // http://www.anexinet.com/blog/opening-native-mapping-app-from-your-mobile-hybrid-app
     if (bowser.iphone) {
-        address = '?saddr=Current Location&daddr=' + address
+        //address = '?saddr=Current Location&daddr=' + address
+        maps = 'maps:q='
     } else if (bowser.android) {
-        maps = 'geo:'
-    } else {
-        maps += '?q='
+        maps = 'geo:0,0?q='
     }
 
     route.addEventListener("click", function() {
