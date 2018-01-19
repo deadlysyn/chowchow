@@ -18,9 +18,8 @@ app.use(express.static(__dirname + '/public'))
  * template helpers
  */
 
-// truncate long strings and only add elipsis on truncation
-app.locals.printer = function(str, len) {
-    len = len > 0 ? len : 15
+// truncate long strings; only add elipsis on truncation
+app.locals.shorten = function(str, len = 20) {
     if (str.length > len) {
         str = str.substring(0,len).trim() + '...'
     }
@@ -30,15 +29,16 @@ app.locals.printer = function(str, len) {
 // convert rating number to svg stars
 app.locals.stars = function(num) {
     let stars = ''
+    let style = 'style="color: #FFD700"' // "gold"
 
-    for (var i = 0; i < num-1; i++) {
-        stars += '<i class="fas fa-star fa-lg" style="color: #FFD700"></i>'
+    for (let i = 0; i < num-1; i++) {
+        stars += '<i class="fas fa-star fa-lg" ' + style + '></i>'
     }
 
     if (num%1 != 0) {
-        stars += '<i class="fas fa-star-half fa-lg" style="color: #FFD700"></i>'
+        stars += '<i class="fas fa-star-half fa-lg" ' + style + '></i>'
     }
-    
+
     return stars
 }
 
@@ -65,7 +65,7 @@ app.use(function (req, res, next) {
 })
 
 app.get('/', m.logRequest, function(req, res, next) {
-    res.render('index')
+    res.render('home')
 })
 
 app.post('/random', m.logRequest, m.parseRequest, function(req, res, next) {

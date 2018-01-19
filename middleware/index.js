@@ -2,19 +2,18 @@
  * middleware
  */
 
-const https = require('https')
-
-const APIHOST = 'api.yelp.com'
-const APIPREFIX = '/v3/businesses/search'
-const APIURL = 'https://' + APIHOST + APIPREFIX
-const APILIMIT = 5
-const SEARCHTERM = 'restaurants'
-const APIKEY = process.env.API_KEY
+const https         = require('https'),
+      APIHOST       = 'api.yelp.com',
+      APIPREFIX     = '/v3/businesses/search',
+      APIURL        = 'https://' + APIHOST + APIPREFIX,
+      APILIMIT      = 5,
+      SEARCHTERM    = 'restaurants',
+      APIKEY        = process.env.API_KEY
 
 var middleware = {}
 
 middleware.logRequest = function(req, res, next) {
-    var date = new Date()
+    let date = new Date()
     console.log(date + ' ' + req.ip + ' ' + req.method + ' ' + req.headers.host + ' ' + req.url + ' (' + res.statusCode + ')')
     return next()
 }
@@ -25,15 +24,21 @@ middleware.parseRequest = function(req, res, next) {
         let q = '?term=' + SEARCHTERM + '&latitude=' + req.body.latitude + '&longitude=' + req.body.longitude + '&limit=' + APILIMIT + '&open_now=true' + '&sort_by=rating'
 
         // how much you're willing to spend
-        // 1 == $; 2 == $$; 3 == $$$; 4 == $$$$
-        if (req.body.pricey === 'on') {
-            q += '&price=1,2,3,4'
-        } else {
-            q += '&price=1,2'
+        switch (req.body.price) {
+            case '$':
+                q += '&price=1'
+                break
+            case '$$':
+                q += '&price=1,2'
+                break
+            case '$$$':
+                q += '&price=1,2,3'
+                break
+            case '$$$$':
+                q += '&price=1,2,3,4'
         }
 
-        // walk or (close) drive
-        if (req.body.drive === 'on') {
+        if (req.body.drive == 'true') {
             // 8000 meters ~= 5 miles
             q += '&radius=8000'
         } else {
@@ -41,18 +46,13 @@ middleware.parseRequest = function(req, res, next) {
             q += '&radius=500'
         }
 
-        // picky eaters get fewer choices
-        if (req.body.picky === 'on') {
-            q += '&categories=tradamerican,newamerican,burgers,breakfast_brunch,chinese,diners,italian,mexican,pizza,sandwiches,steak'
-        }
-
         searchYelp(q, function(results) {
             let choices = results.businesses.length
             if (choices > 0) {
-                // grab random results
+                // grab random result
                 let randChoice = Math.floor(Math.random() * choices)
                 req.session.choice = results.businesses[randChoice]
-                // save remaining results
+                // save remaining results for list view
                 req.session.results = results.businesses.filter(biz => req.session.choice.id != biz.id)
                 return next()
             } else {

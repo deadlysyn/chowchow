@@ -1,48 +1,27 @@
 <% include partials/header %>
-
-<div id="container">
-    <div class="row">
-        <div class="col">
-            <div class="content box-shadow">
-            <% results.forEach(function(biz) {  %>
-                <% if (biz.image_url) { %>
-                <div class="list-item" style="background-image: url('<%= biz.image_url %>'); background-position: center; background-size: cover">
-                <% } else { %>
-                <div class="list-item box-shadow">
-                <% } %>
-                    <div class="list-left">
-                        <a class="btn btn-big btn-success" role="button" href="#" onclick="route('<%= biz.location.display_address %>');return false"><i class="fas fa-map-marker-alt fa-fw fa-2x" style="color:#fffbd5"></i></a>
-                    </div>
-                    <div class="list-middle text-shadow">
-                        <p><%= printer(biz.name) %> (<%= parseFloat(biz.distance / 1609.344).toFixed(1) %>mi)</p>
-                        <p><a href="<%= biz.url %>"><%- stars(biz.rating) %></a></p>
-                    </div>
-                    <div class="list-right">
-                        <a class="btn btn-big btn-primary" role="button" href="tel:<%= biz.phone %>"><i class="fas fa-phone fa-fw fa-2x" style="color:#fffbd5"></i></a>
-                    </div>
-                </div>
-            <% }) %>
-                <div class="buttons">
-                    <a class="btn btn-danger" role="button" href="/"><i class="fas fa-home fa-fw fa-2x" style="color:#fffbd5"></i></a>
-                </div>
+<body id="list">
+    <script defer src="/js/list.js"></script>
+    <div id="list-content">
+        <% results.forEach(function(biz) { %>
+        <% if (biz.image_url) { %>
+        <div class="list-item" style="background-image: url('<%= biz.image_url %>'); background-position: center; background-size: cover">
+        <% } else { %>
+        <div class="list-item" style="background-color: rgba(0, 0, 0, 0.5);">
+        <% } %>
+            <div class="button list-item-route" onclick='route("<%= biz.location.display_address %>");return false'>
+                <i class="fas fa-map-marker-alt fa-fw fa-lg"></i>
+            </div>
+            <div class="list-item-content text-shadow">
+                <div><%= shorten(biz.name) %> (<%= parseFloat(biz.distance / 1609.344).toFixed(1) %>mi)</div>
+                <div><a href="<%= biz.url %>"><%- stars(biz.rating) %></a></div>
+            </div>
+            <div class="button list-item-call" onclick='call("<%= biz.phone %>");return false'>
+                <i class="fas fa-phone fa-fw fa-lg"></i>
             </div>
         </div>
+        <% }) %>
     </div>
-</div>
-
-<script>
-function route(address) {
-    var maps = 'https://maps.google.com?q='
-
-    // https://www.habaneroconsulting.com/stories/insights/2011/opening-native-map-apps-from-the-mobile-browser
-    if (bowser.iphone) {
-        address = '/?saddr=Current Location&daddr=' + address
-    } else if (bowser.android) {
-        maps = 'geo:'
-    }
-
-    location.assign(maps + encodeURIComponent(address))
-}
-</script>
-
+    <div class="button" id="js-list-home">
+        <i class="fas fa-home fa-lg"></i>
+    </div>
 <% include partials/footer %>
