@@ -19,7 +19,7 @@ app.use(express.static(__dirname + '/public'))
  */
 
 // truncate long strings; only add elipsis on truncation
-app.locals.shorten = function(str, len = 20) {
+app.locals.shorten = function(str, len = 30) {
     if (str.length > len) {
         str = str.substring(0,len).trim() + '...'
     }
