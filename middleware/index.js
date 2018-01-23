@@ -21,7 +21,7 @@ middleware.logRequest = function(req, res, next) {
 middleware.parseRequest = function(req, res, next) {
     if (req.body.latitude && req.body.longitude) {
         // build up yelp api query string...
-        let q = '?term=' + SEARCHTERM + '&latitude=' + req.body.latitude + '&longitude=' + req.body.longitude + '&limit=' + APILIMIT + '&open_now=true' + '&sort_by=rating'
+        let q = `?term=${SEARCHTERM}&latitude=${req.body.latitude}&longitude=${req.body.longitude}&limit=${APILIMIT}&open_now=true&sort_by=rating`
 
         // how much you're willing to spend
         switch (req.body.price) {
@@ -47,10 +47,9 @@ middleware.parseRequest = function(req, res, next) {
         }
 
         searchYelp(q, function(results) {
-            let choices = results.businesses.length
-            if (choices > 0) {
+            if (results.businesses) {
                 // grab random result
-                let randChoice = Math.floor(Math.random() * choices)
+                let randChoice = Math.floor(Math.random() * results.businesses.length)
                 req.session.choice = results.businesses[randChoice]
                 // save remaining results for list view
                 req.session.results = results.businesses.filter(biz => req.session.choice.id != biz.id)
