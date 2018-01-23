@@ -13,7 +13,7 @@ var ip          = process.env.IP || '0.0.0.0',
 app.set('view engine', 'ejs')
 app.use(bp.urlencoded({extended: true}))
 app.use(express.static(__dirname + '/public'))
-     
+
 /*
  * template helpers
  */
@@ -54,7 +54,6 @@ app.use(session({
     saveUninitialized: false,
     secret: secret
 }))
-  
 
 app.use(function (req, res, next) {
     if (!req.session.results) {
