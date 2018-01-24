@@ -75,7 +75,7 @@ app.post('/random', m.logRequest, m.parseRequest, function(req, res, next) {
 
 app.get('/random', m.logRequest, function(req, res, next) {
     // got random choice from yelp
-    if (req.session.choice.id) {
+    if (req.session.choice) {
         res.render('random', {biz: req.session.choice})
     } else {
         res.redirect('/')
@@ -83,11 +83,7 @@ app.get('/random', m.logRequest, function(req, res, next) {
 })
 
 app.get('/list', m.logRequest, function(req, res, next) {
-    if (req.session.results.length > 0) {
-        res.render('list', {results: req.session.results})
-    } else {
-        res.redirect('/')
-    }
+    res.render('list', {results: req.session.results})
 })
 
 app.all('*', m.logRequest, function(req, res, next) {
