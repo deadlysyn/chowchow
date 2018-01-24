@@ -2,7 +2,7 @@
 
 Ever go to search for food in your favorite food-finding app, only to get bogged down in choices? You were hungry, but now it's 30 minutes later and you're still comparing options that all look decent...so which to pick before you starve to death?
 
-This is the problem chowchow attempts to solve, with the potential for social good tossed in. Here's how:
+This is the problem [chowchow](https://chowchow.herokuapp.com) attempts to solve, with the potential for social good tossed in. Here's how:
 
 - Obtain your location via `geolocation`
 - Search [Yelp's API](https://www.yelp.com/developers/documentation/v3/get_started) for restauraunts
@@ -42,9 +42,18 @@ API_KEY # Yelp API key
 
 Commits to master are auto-deployed.
 
-# News
+# In the News
 
 If you're laughing right now thinking this is completely useless, touche!  Perhaps it was just an excuse to write some blogs.
 
 - [Idea to App Part 1](https://medium.com/@deadlysyn/idea-to-app-part-1-42ca01aba91d)
 - [Idea to App Part 2](https://medium.com/@deadlysyn/idea-to-app-part-2-ad040109ba97)
+
+# Shouts
+
+- [Node.js](https://nodejs.org), [Express](https://expressjs.com) and the [NPM](https://www.npmjs.com) ecosystem are awesome.
+- CSS Grid learnings made possible by [Per Harald Borgen's](https://medium.com/@perborgen) FREE tutorial: [GO LEARN](https://scrimba.com/g/gR8PTE)!
+- UI icons sourced from the de facto [Font Awesome](https://fontawesome.com).
+- "Dog bone" favicon.ico is courtesy of [Icons8](http://icons8.com).
+
+On the shoulders of giants.
