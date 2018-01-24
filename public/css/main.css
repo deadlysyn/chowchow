@@ -85,6 +85,21 @@ a:visited {
     text-decoration: none;
 }
 
+.error {
+    background-color: rgba(211, 35, 35, 0.5);
+    border-radius: 0;
+    /*box-sizing: border-box;*/
+    box-shadow: 0 -10px;
+    color: #fff;
+    height: 20px;
+    width: 100%;
+    padding: 1em;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 /*
  * common elements
  */

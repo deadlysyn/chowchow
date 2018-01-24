@@ -55,11 +55,13 @@ middleware.parseRequest = function(req, res, next) {
                 req.session.results = results.businesses.filter(biz => req.session.choice.id != biz.id)
                 return next()
             } else {
+                req.flash('error', 'No results found: please try again')
                 res.redirect('/')
             }
         })
     } else {
-        res.redirect('/nolocation')
+        req.flash('error', 'Location error: please try again')
+        res.redirect('/')
     }
 }
 

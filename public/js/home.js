@@ -9,7 +9,7 @@ var form        = document.getElementById('form'),
     geoOpts     = {
         enableHighAccuracy: true,
         maximumAge: 300000,
-        timeout: 20000
+        timeout: 30000
     }
 
 if (!navigator.geolocation || !navigator.cookieEnabled) {

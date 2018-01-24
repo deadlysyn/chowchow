@@ -1,5 +1,10 @@
 <% include partials/header %>
 <body id="home">
+    <% if (error && error.length > 0) { %>
+    <div class="error">
+        <i class="fas fa-exclamation-triangle"></i> <%= error %> <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <% } %>
     <script defer src="/js/home.js"></script>
     <form action="/random" method="post" id="form">
         <input type="hidden" name="price" value="$$">
