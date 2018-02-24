@@ -17,6 +17,10 @@
     "url": "https://github.com/deadlysyn/chowchow/issues"
   },
   "homepage": "https://github.com/deadlysyn/chowchow#readme",
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.6.0"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "connect-flash": "^0.1.1",
