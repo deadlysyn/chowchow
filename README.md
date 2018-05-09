@@ -48,6 +48,8 @@ If you're laughing right now thinking this is completely useless, touche!  Perha
 
 - [Idea to App Part 1](https://medium.com/@deadlysyn/idea-to-app-part-1-42ca01aba91d)
 - [Idea to App Part 2](https://medium.com/@deadlysyn/idea-to-app-part-2-ad040109ba97)
+- [Idea to App Part 3](https://medium.com/@deadlysyn/idea-to-app-part-3-76de38bb692f)
+- [Migrating a Node App to PWS](https://medium.com/@deadlysyn/migrating-a-node-app-to-pws-b3f2133ec451)
 
 # Shouts
 
